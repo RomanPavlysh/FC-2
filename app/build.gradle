@@ -1,0 +1,106 @@
+buildscript {
+    repositories {
+        mavenCentral() // or jcenter()
+        maven { url 'https://maven.fabric.io/public' }
+    }
+
+    dependencies {
+        classpath 'io.fabric.tools:gradle:1.24.4'
+        classpath 'com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.8.2'
+    }
+}
+apply plugin: 'com.android.application'
+apply plugin: 'io.fabric'
+apply plugin: 'com.getkeepsafe.dexcount'
+
+
+repositories {
+    maven { url 'https://maven.fabric.io/public' }
+    mavenCentral() // or jcenter()
+}
+
+
+android {
+    signingConfigs {
+        config {
+            keyAlias 'release'
+            keyPassword 'release'
+            //storeFile file('C:\\dropbox\\keystore\\natage.jks')
+            storePassword 'release'
+        }
+    }
+
+    compileSdkVersion 27
+    buildToolsVersion '27.0.2'
+
+
+    defaultConfig {
+
+        multiDexEnabled false
+
+        applicationId "com.natage.luxbatterysaver"
+        minSdkVersion 15
+        targetSdkVersion 27 //#run time perm
+        versionCode 9
+        versionName "1.9"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            jniDebuggable false
+            signingConfig signingConfigs.config
+        }
+        debug {
+            debuggable true
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    productFlavors {
+    }
+}
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    compile 'com.android.support:appcompat-v7:27.0.2'
+    testCompile 'junit:junit:4.12'
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    testCompile 'junit:junit:4.12'
+    compile 'com.android.support:appcompat-v7:27.0.2'
+    compile 'com.android.support:design:27.0.2'
+    compile 'com.github.lzyzsd:circleprogress:1.1.0@aar'
+    compile 'com.android.support:cardview-v7:27.0.2'
+    compile 'cn.fanrunqi:waveprogress:1.0.1'
+    compile 'com.squareup.picasso:picasso:2.5.2'
+    compile 'com.google.android.gms:play-services-ads:11.8.0'
+    compile 'com.google.firebase:firebase-ads:11.8.0'
+    compile 'com.google.firebase:firebase-core:11.8.0'
+    implementation project(':librarymasklayout')
+    compile 'com.google.dagger:dagger:2.11'
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.11'
+    //a
+    compile 'com.yandex.android:mobmetricalib:2.77'
+    compile 'com.firebase:firebase-jobdispatcher:0.8.5'
+    compile('com.crashlytics.sdk.android:crashlytics:2.8.0@aar') {
+        transitive = true
+    }
+    //Logger
+    compile 'com.orhanobut:logger:2.1.1'
+    // glide image loader
+    compile 'com.github.bumptech.glide:glide:4.3.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.3.1'
+    //test
+    //compile 'com.google.android.gms:play-services-location:11.6.2'
+    compile 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    // Fasebook SDK
+    compile 'com.facebook.android:facebook-android-sdk:[4,5)'
+}
+apply plugin: 'com.google.gms.google-services'

@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "456863092045",
+    "firebase_url": "https://battery-b3f7a.firebaseio.com",
+    "project_id": "battery-b3f7a",
+    "storage_bucket": "battery-b3f7a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:456863092045:android:db9c3766f41590a8",
+        "android_client_info": {
+          "package_name": "com.natage.luxbatterysaver"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "456863092045-leb3dacjtp33j5bqiup1kupu56oljt9h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.natage.luxbatterysaver",
+            "certificate_hash": "8903b591017b6f0cae0bbf55d7e5bd8e12e03aa9"
+          }
+        },
+        {
+          "client_id": "456863092045-065kru7a6nou6uagddvre0tbnk1ugqrd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.natage.luxbatterysaver",
+            "certificate_hash": "b320e74f2b4703221b78965bb25b48d99c52eb0f"
+          }
+        },
+        {
+          "client_id": "456863092045-53juc4l2fglfumn8faf95h3me8gn6g93.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAMLGbtOVph9h0fPx9Dt5Ap9uwIoBPbnUg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "456863092045-53juc4l2fglfumn8faf95h3me8gn6g93.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
