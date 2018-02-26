@@ -353,4 +353,6 @@ limitations under the License.</string>
     <string name="tv_mode5">Режим</string>
     <string name="ем_rotate">Поворот</string>
     <string name="tv_wifi5">WiFi</string>
+    <!--Appodeal appKey-->
+    <string name="appo_key">e5690f83078ae46d3c2d58c0d3a13c992a3ea074724d03ba</string>
 </resources>

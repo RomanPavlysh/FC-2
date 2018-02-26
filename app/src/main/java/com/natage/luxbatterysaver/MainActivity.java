@@ -44,6 +44,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.appodeal.ads.Appodeal;
+import com.appodeal.ads.MrecCallbacks;
 import com.github.lzyzsd.circleprogress.ArcProgress;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
@@ -126,6 +128,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private BluetoothAdapter AdapterForBluetooth;
 
+    private String appKey;
 
     private Intent i;
     private AudioManager am;
@@ -154,6 +157,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     //Receivers
     private BroadcastReceiver chargerReceiver;      //My custom receiver
     private BroadcastReceiver batteryLevelReceiver;
+
 
 
     private class BatteryInfoReceiver extends BroadcastReceiver {
@@ -241,6 +245,19 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         if (getSupportActionBar() != null) {
             getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
         }
+        appKey = getResources().getString(R.string.appo_key);
+
+        //Appodeal Interstitial
+        Appodeal.initialize(this, appKey, Appodeal.INTERSTITIAL);
+        showInterstitial();
+
+        //Apodeal
+        Appodeal.setMrecViewId(R.id.appodealMrecView);
+
+        Appodeal.initialize(this, appKey, Appodeal.MREC);
+        Appodeal.initialize(this, appKey, Appodeal.BANNER_BOTTOM);
+        Appodeal.show(this, Appodeal.MREC);
+        Appodeal.show(this, Appodeal.BANNER_BOTTOM);
 
         //<---------------
 //        registerReceiver()
@@ -253,26 +270,28 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
-        final NativeExpressAdView adView = findViewById(R.id.NativeadView);
-        adView.loadAd(new AdRequest.Builder().build());
-        adView.setVisibility(View.GONE);
-        adView.setAdListener(new AdListener() {
-            @Override
-            public void onAdLoaded() {
-                super.onAdLoaded();
-                adView.setVisibility(View.VISIBLE);
-            }
-        });
+        // Admob baner
 
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-        mAdView.setAdListener(new AdListener() {
-            @Override
-            public void onAdLoaded() {
-                super.onAdLoaded();
-                mAdView.setVisibility(View.VISIBLE);
-            }
-        });
+//        final NativeExpressAdView adView = findViewById(R.id.NativeadView);
+//        adView.loadAd(new AdRequest.Builder().build());
+//        adView.setVisibility(View.GONE);
+//        adView.setAdListener(new AdListener() {
+//            @Override
+//            public void onAdLoaded() {
+//                super.onAdLoaded();
+//                adView.setVisibility(View.VISIBLE);
+//            }
+//        });
+//
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        mAdView.loadAd(adRequest);
+//        mAdView.setAdListener(new AdListener() {
+//            @Override
+//            public void onAdLoaded() {
+//                super.onAdLoaded();
+//                mAdView.setVisibility(View.VISIBLE);
+//            }
+//        });
 
         //Handle Oreo
         //removed registerReceiver(this.batteryInfoReceiver, new IntentFilter(Intent.ACTION_BATTERY_CHANGED));
@@ -316,14 +335,18 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         SetClickListner();
         CheckIntentToolsOnOrOff();
 
-        mInterstitialAd = new InterstitialAd(getApplicationContext());
-        mInterstitialAd.setAdUnitId(getResources().getString(R.string.instritial));
-        mInterstitialAd.loadAd(adRequest);
-        mInterstitialAd.setAdListener(new AdListener() {
-            public void onAdLoaded() {
-                showInterstitial();
-            }
-        });
+        //AdMob Inrestitial for start
+
+//        mInterstitialAd = new InterstitialAd(getApplicationContext());
+//        mInterstitialAd.setAdUnitId(getResources().getString(R.string.instritial));
+//        mInterstitialAd.loadAd(adRequest);
+//        mInterstitialAd.setAdListener(new AdListener() {
+//            public void onAdLoaded() {
+//                showInterstitial();
+//            }
+//        });
+
+
 
         chargerReceiver = new BatteryReceiver(); //BroadcastReceiver() {
 //            @SuppressLint("WrongConstant")
@@ -431,9 +454,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     }
 
     private void showInterstitial() {
-        if (mInterstitialAd.isLoaded()) {
-            mInterstitialAd.show();
-        }
+//        if (mInterstitialAd.isLoaded()) {
+//            mInterstitialAd.show();
+//        }
+        if (Appodeal.isLoaded(Appodeal.INTERSTITIAL))
+        Appodeal.show(this, Appodeal.INTERSTITIAL);
     }
 
 
@@ -626,7 +651,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onResume() {
         super.onResume();
-
+        Appodeal.onResume(this, Appodeal.MREC);
+        Appodeal.onResume(this,Appodeal.BANNER_BOTTOM);
+        Appodeal.onResume(this,Appodeal.INTERSTITIAL);
         LocalBroadcastManager.getInstance(this).registerReceiver(batteryInfoReceiver, new IntentFilter(ChargingService.ACTION_BROADCAST));
 
         CheckIntentToolsOnOrOff();
@@ -903,6 +930,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onStart() {
         super.onStart();
+
 
         // Bind to the service. If the service is in foreground mode, this signals to the service
         // that since this activity is in the foreground, the service can exit foreground mode.

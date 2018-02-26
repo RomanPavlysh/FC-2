@@ -2,6 +2,7 @@ package com.natage.luxbatterysaver;
 
 import android.os.Build;
 
+import com.appodeal.ads.Appodeal;
 import com.crashlytics.android.Crashlytics;
 import com.natage.luxbatterysaver.di.component.ApplicationComponent;
 import com.natage.luxbatterysaver.di.component.DaggerApplicationComponent;
@@ -49,7 +50,7 @@ public class Application extends android.app.Application {
         /* Replace API_KEY with your unique API key. Please, read official documentation how to obtain one:
          https://tech.yandex.com/metrica-mobile-sdk/doc/mobile-sdk-dg/concepts/android-initialize-docpage/
          */
-
+        Appodeal.isLoaded(Appodeal.INTERSTITIAL);
 
         YandexMetricaConfig config = YandexMetricaConfig
                 .newConfigBuilder(getString(R.string.metrika_api_key))
@@ -68,7 +69,7 @@ public class Application extends android.app.Application {
         component.inject(this);
 
 
-        YandexMetrica.reportEvent("started");
+//        YandexMetrica.reportEvent("started");
 
 
         CentralContainer.startJobScheduler(this);

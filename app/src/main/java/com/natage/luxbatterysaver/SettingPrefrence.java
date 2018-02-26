@@ -9,6 +9,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.appodeal.ads.Appodeal;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -35,17 +36,27 @@ public class SettingPrefrence extends AppCompatActivity {
 
         getFragmentManager().beginTransaction().replace(R.id.content_frame, new SettingActivity()).commit();
 
-        mAdView = findViewById(R.id.adView);
-        AdRequest adRequest = new AdRequest.Builder()
-                .build();
-        mAdView.loadAd(adRequest);
-        mAdView.setAdListener(new AdListener() {
-            @Override
-            public void onAdLoaded() {
-                super.onAdLoaded();
-                mAdView.setVisibility(View.VISIBLE);
-            }
-        });
+        //Apodeal
+        String appKey = getResources().getString(R.string.appo_key);
+
+        Appodeal.setBannerViewId(R.id.appodealBannerView);
+        Appodeal.initialize(this, appKey, Appodeal.BANNER);
+        Appodeal.show(this, Appodeal.BANNER_VIEW);
+
+        // AdMob banner
+//        mAdView = findViewById(R.id.adView);
+//        AdRequest adRequest = new AdRequest.Builder()
+//                .build();
+//        mAdView.loadAd(adRequest);
+//        mAdView.setAdListener(new AdListener() {
+//            @Override
+//            public void onAdLoaded() {
+//                super.onAdLoaded();
+//                mAdView.setVisibility(View.VISIBLE);
+//            }
+//        });
+
+
 
     }
 
@@ -53,6 +64,8 @@ public class SettingPrefrence extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         return true;
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

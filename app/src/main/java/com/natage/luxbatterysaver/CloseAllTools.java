@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.appodeal.ads.Appodeal;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -70,13 +71,17 @@ public class CloseAllTools extends AppCompatActivity implements View.OnClickList
     @BindView(R.id.loutIssues)
     RelativeLayout loutIssues;
 
-    @BindView(R.id.adView)
-    AdView mAdView;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Apodeal
+        String appKey = getResources().getString(R.string.appo_key);
+        Appodeal.setBannerViewId(R.id.appodealBannerViewCloseTools);
+        Appodeal.initialize(this, appKey, Appodeal.BANNER_TOP);
+        Appodeal.show(this, Appodeal.BANNER);
+
 
         SetValue = getIntent().getIntExtra("SetValue", 0);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -127,15 +132,15 @@ public class CloseAllTools extends AppCompatActivity implements View.OnClickList
             txtDicMobileData.setText("Disable mobile data and your battery will charge 2x faster");
         }
 
-        AdRequest adRequest = new AdRequest.Builder().build();
-        mAdView.loadAd(adRequest);
-        mAdView.setAdListener(new AdListener() {
-            @Override
-            public void onAdLoaded() {
-                super.onAdLoaded();
-                mAdView.setVisibility(View.VISIBLE);
-            }
-        });
+//        AdRequest adRequest = new AdRequest.Builder().build();
+//        mAdView.loadAd(adRequest);
+//        mAdView.setAdListener(new AdListener() {
+//            @Override
+//            public void onAdLoaded() {
+//                super.onAdLoaded();
+//                mAdView.setVisibility(View.VISIBLE);
+//            }
+//        });
 
     }
 
@@ -240,6 +245,7 @@ public class CloseAllTools extends AppCompatActivity implements View.OnClickList
     public void onResume() {
         super.onResume();
         CheckWhatOn();
+        Appodeal.onResume(this, Appodeal.BANNER);
     }
 
     @Override

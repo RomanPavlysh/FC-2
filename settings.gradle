@@ -1,2 +1,2 @@
-include ':app', ':librarymasklayout'
+include ':app', ':librarymasklayout', ':adcolony-sdk-3.1.2'
 //include ':libraryMaskLayout'

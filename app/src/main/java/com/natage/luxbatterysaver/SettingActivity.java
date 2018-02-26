@@ -10,6 +10,8 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.util.DisplayMetrics;
 
+import com.appodeal.ads.Appodeal;
+
 import static com.natage.luxbatterysaver.SettingsUtils.rateUs;
 import static com.natage.luxbatterysaver.utils.Utils.getDeviceName;
 
@@ -22,6 +24,7 @@ public class SettingActivity extends PreferenceFragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.setting);
+
 
         PackageManager manager = getActivity().getPackageManager();
         PackageInfo info = null;

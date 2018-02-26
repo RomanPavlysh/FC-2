@@ -15,6 +15,8 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.appodeal.ads.Appodeal;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
@@ -56,6 +58,11 @@ public class AboutActivity extends AppCompatActivity {
 
         setInitialConfiguration();
         setScreenElements();
+        //Appodeal MREC banner
+        String appKey = getResources().getString(R.string.appo_key);
+        Appodeal.setMrecViewId(R.id.appodealMrecViewAbout);
+        Appodeal.initialize(this, appKey, Appodeal.MREC);
+        Appodeal.show(this,Appodeal.MREC);
 
     }
 
@@ -151,6 +158,11 @@ public class AboutActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        Appodeal.onResume(this, Appodeal.MREC);
     }
 
 }

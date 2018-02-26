@@ -34,6 +34,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.appodeal.ads.Appodeal;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.NativeExpressAdView;
@@ -180,16 +181,16 @@ public class FastCharger extends BaseActivity implements View.OnClickListener {
 
         StartFastCharger.setVisibility(View.VISIBLE);
 
-        final NativeExpressAdView adView = findViewById(R.id.NativeadView);
-        adView.loadAd(new AdRequest.Builder().build());
-        adView.setVisibility(View.GONE);
-        adView.setAdListener(new AdListener() {
-            @Override
-            public void onAdLoaded() {
-                super.onAdLoaded();
-                adView.setVisibility(View.VISIBLE);
-            }
-        });
+//        final NativeExpressAdView adView = findViewById(R.id.NativeadView);
+//        adView.loadAd(new AdRequest.Builder().build());
+//        adView.setVisibility(View.GONE);
+//        adView.setAdListener(new AdListener() {
+//            @Override
+//            public void onAdLoaded() {
+//                super.onAdLoaded();
+//                adView.setVisibility(View.VISIBLE);
+//            }
+//        });
 
 
         Rotate = AnimationUtils.loadAnimation(this, R.anim.rotate_clockwise);
@@ -213,7 +214,11 @@ public class FastCharger extends BaseActivity implements View.OnClickListener {
             //requestPermissionsWithRationale();
             requestPerms();
         }
-
+//Apodeal
+        String appKey = getResources().getString(R.string.appo_key);
+        Appodeal.setMrecViewId(R.id.appodealMrecViewFastCarger);
+        Appodeal.initialize(this, appKey, Appodeal.MREC);
+        Appodeal.show(this, Appodeal.MREC);
 
     }
 

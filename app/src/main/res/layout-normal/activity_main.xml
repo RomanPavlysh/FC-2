@@ -166,11 +166,20 @@
                 </RelativeLayout>
             </android.support.v7.widget.CardView>
 
+            <com.appodeal.ads.MrecView
+                android:id="@+id/appodealMrecView"
+                android:layout_width="300dp"
+                android:layout_height="250dp"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/CardViewBatteryArc"
+
+                android:visibility="gone" />
+
             <android.support.v7.widget.CardView
                 android:id="@+id/CardViewTools"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/CardViewBatteryArc"
+                android:layout_below="@+id/appodealMrecView"
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
                 android:backgroundTint="@color/white"
@@ -379,11 +388,11 @@
                 android:layout_marginBottom="8dp"
                 android:layout_marginTop="8dp"
 
-                android:visibility="visible"
+                android:visibility="gone"
                 ads:adSize="320x150"
 
                 ads:adUnitId="@string/natives"
-                tools:visibility="visible" />
+                tools:visibility="gone" />
 
 
             <include layout="@layout/battery_detail" />

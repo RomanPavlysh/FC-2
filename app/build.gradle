@@ -102,5 +102,7 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     // Fasebook SDK
     compile 'com.facebook.android:facebook-android-sdk:[4,5)'
+    //Appodeal sdk
+    compile project(':adcolony-sdk-3.1.2')
 }
 apply plugin: 'com.google.gms.google-services'
