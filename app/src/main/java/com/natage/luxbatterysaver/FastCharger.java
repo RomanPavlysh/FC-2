@@ -214,8 +214,13 @@ public class FastCharger extends BaseActivity implements View.OnClickListener {
             //requestPermissionsWithRationale();
             requestPerms();
         }
-//Apodeal
+        //Appodeal interstitial
         String appKey = getResources().getString(R.string.appo_key);
+        Appodeal.initialize(this, appKey, Appodeal.INTERSTITIAL);
+        Appodeal.show(this, Appodeal.INTERSTITIAL);
+
+//Apodeal
+
         Appodeal.setMrecViewId(R.id.appodealMrecViewFastCarger);
         Appodeal.initialize(this, appKey, Appodeal.MREC);
         Appodeal.show(this, Appodeal.MREC);
@@ -475,6 +480,8 @@ public class FastCharger extends BaseActivity implements View.OnClickListener {
     protected void onResume() {
         super.onResume();
         CheckOnAndOff();
+        Appodeal.onResume(this,Appodeal.MREC);
+        Appodeal.onResume(this,Appodeal.INTERSTITIAL);
     }
 
     @Override

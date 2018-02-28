@@ -19,3 +19,10 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+-keep class com.yandex.metrica.impl.* { *; }
+
+-dontwarn com.yandex.metrica.impl.*
+
+-keep class com.yandex.metrica.* { *; }
+
+-dontwarn com.yandex.metrica.*

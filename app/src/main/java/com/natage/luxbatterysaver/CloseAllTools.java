@@ -79,7 +79,7 @@ public class CloseAllTools extends AppCompatActivity implements View.OnClickList
         //Apodeal
         String appKey = getResources().getString(R.string.appo_key);
         Appodeal.setBannerViewId(R.id.appodealBannerViewCloseTools);
-        Appodeal.initialize(this, appKey, Appodeal.BANNER_TOP);
+        Appodeal.initialize(this, appKey, Appodeal.BANNER);
         Appodeal.show(this, Appodeal.BANNER);
 
 

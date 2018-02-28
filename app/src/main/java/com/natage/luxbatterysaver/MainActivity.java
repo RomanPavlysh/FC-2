@@ -457,7 +457,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 //        if (mInterstitialAd.isLoaded()) {
 //            mInterstitialAd.show();
 //        }
-        if (Appodeal.isLoaded(Appodeal.INTERSTITIAL))
+        //if (Appodeal.isLoaded(Appodeal.INTERSTITIAL))
         Appodeal.show(this, Appodeal.INTERSTITIAL);
     }
 
